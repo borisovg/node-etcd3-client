@@ -1,12 +1,12 @@
-/*jshint node:true, mocha:true*/
+/*jshint node:true, esversion:6, mocha:true*/
 'use strict';
 
 /**
 * @author George Borisov <git@gir.me.uk>
 */
 
-var expect = require('chai').expect;
-var lib = require('../../index.js');
+const expect = require('chai').expect;
+const lib = require('../../index.js');
 
 describe('KV client', function () {
     var client;
@@ -42,6 +42,10 @@ describe('KV client', function () {
             expect(res.prev_kv.value).to.equal('foo');
             done();
         });
+    });
+
+    it('put callback is optional', function () {
+        client.put({ key: 'test/foo', value: 'foofoo' });
     });
 
     it('gets single KV pair', function (done) {
@@ -98,5 +102,9 @@ describe('KV client', function () {
                 done();
             });
         });
+    });
+
+    it('deleteRange callback is optional', function () {
+        client.deleteRange({ key: 'test/foo' });
     });
 });
