@@ -26,7 +26,7 @@ docker-start:
 ## docker-stop:  start the Docker etcd container
 .PHONY: docker-stop
 docker-stop:
-	test -z "$$(sudo docker ps -q -f name=$(NAME))" || ( \
+	test -z "$$(sudo docker ps -a -q -f name=$(NAME))" || ( \
 		sudo docker stop $(NAME); \
 		sudo docker rm $(NAME); \
 	)
