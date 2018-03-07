@@ -34,10 +34,6 @@ exports.createClient = function (type, opts, callback) {
     const client = (clients[type]) ? new clients[type](opts, creds) : new etcd[type](`${opts.host}:${opts.port}`, creds);
 
     grpc.waitForClientReady(client, new Date(Date.now() + opts.maxWait), function (err) {
-        if (err) {
-            callback(err);
-        } else {
-            callback(undefined, client);
-        }
+        callback(err, client);
     });
 };
