@@ -1,7 +1,7 @@
 /*jshint node:true, esversion:6*/
 'use strict';
 
-var etcd = require('etcd3-client');
+const etcd = require('etcd3-client');
 
 etcd.createClient('KV', { host: 'localhost', port: 2379 }, function (err, client) {
     // put
